@@ -7,6 +7,8 @@ export default function DetailedMovie() {
   const id = useParams();
 
   useEffect(() => {
+    if (!id) return;
+
     getDetailedMovie(id).then(movie => {
       setMovieDetail(movie);
     });
@@ -17,11 +19,13 @@ export default function DetailedMovie() {
   return (
     <>
       {title}
-      <img
-        src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-        alt="alt"
-        width={600}
-      />
+      {poster_path && (
+        <img
+          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+          alt="alt"
+          width={600}
+        />
+      )}
     </>
   );
 }

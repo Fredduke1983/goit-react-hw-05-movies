@@ -1,7 +1,7 @@
 import Home from 'pages/Home';
 import { Route, Routes } from 'react-router-dom';
 import DetailedMovie from './DetailedMovie/DetailedMovie';
-import Layout from './Header/Header';
+import Layout from './Header/Layout';
 
 export const App = () => {
   return (
