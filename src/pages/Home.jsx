@@ -8,8 +8,6 @@ export default function Home() {
   const [responsePopular, setResponsePopular] = useState([]);
 
   useEffect(() => {
-    console.log('responsePopular', responsePopular);
-
     if (responsePopular.length < 1)
       getPopularMovies().then(el => setResponsePopular(el.data.results));
   }, [responsePopular]);
@@ -20,7 +18,6 @@ export default function Home() {
       <ul>
         {responsePopular && <ListItem responsePopular={responsePopular} />}
       </ul>
-      {/* <main><Outlet /></main> */}
     </div>
   );
 }

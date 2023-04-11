@@ -1,5 +1,6 @@
 import Home from 'pages/Home';
 import { Route, Routes } from 'react-router-dom';
+import DetailedMovie from './DetailedMovie/DetailedMovie';
 import HeaderNavigation from './Header/Header';
 
 export const App = () => {
@@ -7,10 +8,10 @@ export const App = () => {
     <>
       <HeaderNavigation />
       <Routes>
-        <Route path="/" element={<Home />}>
-          Home Page
+        <Route path="/" element={<Home />} />
+        <Route path="/movies">
+          <Route path=":id" element={<DetailedMovie />}></Route>
         </Route>
-        <Route path="/movies">Movies Page</Route>
       </Routes>
     </>
   );
