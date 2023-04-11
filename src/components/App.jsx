@@ -1,16 +1,16 @@
 import Home from 'pages/Home';
 import { Route, Routes } from 'react-router-dom';
 import DetailedMovie from './DetailedMovie/DetailedMovie';
-import HeaderNavigation from './Header/Header';
+import Layout from './Header/Header';
 
 export const App = () => {
   return (
     <>
-      <HeaderNavigation />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies">
-          <Route path=":id" element={<DetailedMovie />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="movies"></Route>
+          <Route path="movies/:id" element={<DetailedMovie />}></Route>
         </Route>
       </Routes>
     </>
