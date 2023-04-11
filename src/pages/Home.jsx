@@ -1,22 +1,26 @@
-import axios from 'axios';
-let arr = [];
+import getPopularMovies from 'utils/GetPopular';
+
+import { useEffect, useState } from 'react';
+import ListItem from 'components/ListItemMovies/ListItem';
+// import { Outlet } from 'react-router-dom';
+
 export default function Home() {
-  async function getPopularMovies() {
-    const response = await axios.get(
-      'https://api.themoviedb.org/3/trending/movie/week?api_key=07952b117bf25f1a5db75594ad56755b&language=en-US&page=1&include_adult=false'
-    );
-    console.log('response', response.data.results);
-    arr = response.data.results[0];
-  }
-  getPopularMovies();
+  const [responsePopular, setResponsePopular] = useState([]);
+
+  useEffect(() => {
+    console.log('responsePopular', responsePopular);
+
+    if (responsePopular.length < 1)
+      getPopularMovies().then(el => setResponsePopular(el.data.results));
+  }, [responsePopular]);
 
   return (
     <div>
       Home Page Home
-      <img
-        src={`https://image.tmdb.org/t/p/original/${arr.poster_path}`}
-        alt="pict"
-      ></img>
+      <ul>
+        {responsePopular && <ListItem responsePopular={responsePopular} />}
+      </ul>
+      {/* <main><Outlet /></main> */}
     </div>
   );
 }

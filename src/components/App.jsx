@@ -1,14 +1,11 @@
 import Home from 'pages/Home';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import HeaderNavigation from './Header/Header';
 
 export const App = () => {
   return (
-    // <Header>
     <>
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/movies">Movies</NavLink>
-      </nav>
+      <HeaderNavigation />
       <Routes>
         <Route path="/" element={<Home />}>
           Home Page
@@ -16,10 +13,10 @@ export const App = () => {
         <Route path="/movies">Movies Page</Route>
       </Routes>
     </>
-    // </Header>
   );
 };
 
+//REV https://api.themoviedb.org/3/movie/550/reviews?api_key=07952b117bf25f1a5db75594ad56755b&language=en-US&page=1
 //? --- https://api.themoviedb.org/3/movie/550?api_key=07952b117bf25f1a5db75594ad56755b
 //! https://api.themoviedb.org/3/trending/movie/day?api_key=07952b117bf25f1a5db75594ad56755b
 //* POPULAR -> https://api.themoviedb.org/3/trending/movie/week?api_key=07952b117bf25f1a5db75594ad56755b&language=en-US&page=1&include_adult=false
