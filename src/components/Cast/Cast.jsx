@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getCredits from 'utils/GetCredits';
 import { CastList, CastListItem } from './Cast.styled';
-import defaultImage from '../../img/default-image.webp';
+import defaultImage from '../../img/no-symbol.png';
 
 export default function Cast() {
   const [movieCredits, setMovieCredits] = useState([]);
