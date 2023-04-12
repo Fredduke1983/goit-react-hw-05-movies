@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import getDetailedMovie from 'utils/GetDetailed';
-import { DetailStyle } from './DetailedMovie.styled';
+import { DetailStyle, ToHomeStyle } from './DetailedMovie.styled';
+import AddInfo from './AddInfo/AddInfo';
+import { BsBoxArrowLeft } from 'react-icons/bs';
+// import { FaBeer } from 'react-icons/fa';
 
 export default function DetailedMovie() {
   const [movieDetail, setMovieDetail] = useState([]);
@@ -19,6 +22,12 @@ export default function DetailedMovie() {
 
   return (
     <>
+      <Link to="/">
+        <ToHomeStyle>
+          <BsBoxArrowLeft />
+          <p>Go Home</p>
+        </ToHomeStyle>
+      </Link>
       <DetailStyle>
         {poster_path && (
           <img
@@ -43,18 +52,7 @@ export default function DetailedMovie() {
           )}
         </div>
       </DetailStyle>
-      <div>
-        <p>Additional Information</p>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="review">Review</Link>
-          </li>
-        </ul>
-        <Outlet />
-      </div>
+      <AddInfo />
     </>
   );
 }

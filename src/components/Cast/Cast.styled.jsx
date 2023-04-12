@@ -2,7 +2,7 @@ import styled from 'styled-components';
 const CastList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 20px;
   list-style: none;
 `;
 const CastListItem = styled.li`
