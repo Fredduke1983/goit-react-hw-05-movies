@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import getDetailedMovie from 'utils/GetDetailed';
 import { DetailStyle } from './DetailedMovie.styled';
 
@@ -15,7 +15,6 @@ export default function DetailedMovie() {
     });
   }, [id]);
 
-  console.log(movieDetail);
   const { poster_path, title, vote_average, overview, genres } = movieDetail;
 
   return (
@@ -48,12 +47,13 @@ export default function DetailedMovie() {
         <p>Additional Information</p>
         <ul>
           <li>
-            <Link>Cast</Link>
+            <Link to="cast">Cast</Link>
           </li>
           <li>
-            <Link>Review</Link>
+            <Link to="review">Review</Link>
           </li>
         </ul>
+        <Outlet />
       </div>
     </>
   );
