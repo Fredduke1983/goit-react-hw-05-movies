@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { MoviesFormStyle, MoviesList } from './MoviesForm.styled';
 import getSearch from 'utils/GetSearch';
 import { useState } from 'react';
@@ -20,12 +20,14 @@ export default function MoviesForm() {
         });
   }
 
+  const location = useLocation();
+  console.log(location.search);
+
   function onChange(event) {
     setSearchParams({ query: event.target.value });
     if (!event.target.value) setSearchParams({});
   }
 
-  console.log(searchList);
   return (
     <>
       <MoviesFormStyle onSubmit={onSubmit}>
@@ -36,8 +38,11 @@ export default function MoviesForm() {
         {searchList.map(movie => {
           const { id, title, poster_path } = movie;
           return (
-            <Link to={`/movies/${movie.id}`}>
-              <li key={id}>
+            <li key={id}>
+              <Link
+                to={`/movies/${movie.id}`}
+                state={{ from: location.search }}
+              >
                 {poster_path && (
                   <img
                     src={`https://image.tmdb.org/t/p/original/${poster_path}`}
@@ -49,8 +54,8 @@ export default function MoviesForm() {
                   <img src={defaultImage} alt="alt" width={200} />
                 )}
                 <p>{title}</p>
-              </li>
-            </Link>
+              </Link>
+            </li>
           );
         })}
       </MoviesList>
