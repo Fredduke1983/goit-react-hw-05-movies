@@ -1,20 +1,36 @@
-import Home from 'pages/Home';
+import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import DetailedMovie from './DetailedMovie/DetailedMovie';
 import Layout from './Header/Layout';
 import { Container } from './Container/Container.styled';
 import Cast from './Cast/Cast';
 import Review from './Review/Review';
 import Movies from 'pages/Movies';
 
+const Home = React.lazy(() => import('pages/Home'));
+const DetailedMovie = React.lazy(() => import('./DetailedMovie/DetailedMovie'));
+
 export const App = () => {
   return (
     <Container>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route
+            index
+            element={
+              <Suspense fallback={<div>Завантаження...</div>}>
+                <Home />
+              </Suspense>
+            }
+          />
           <Route path="movies" element={<Movies />} />
-          <Route path="movies/:id" element={<DetailedMovie />}>
+          <Route
+            path="movies/:id"
+            element={
+              <Suspense fallback={<div>Завантаження...</div>}>
+                <DetailedMovie />
+              </Suspense>
+            }
+          >
             <Route path="cast" element={<Cast />}></Route>
             <Route path="review" element={<Review />}></Route>
           </Route>

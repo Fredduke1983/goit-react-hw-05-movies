@@ -4,7 +4,6 @@ import getDetailedMovie from 'utils/GetDetailed';
 import { DetailStyle, ToHomeStyle } from './DetailedMovie.styled';
 import AddInfo from './AddInfo/AddInfo';
 import { BsBoxArrowLeft } from 'react-icons/bs';
-// import { FaBeer } from 'react-icons/fa';
 
 export default function DetailedMovie() {
   const [movieDetail, setMovieDetail] = useState([]);
