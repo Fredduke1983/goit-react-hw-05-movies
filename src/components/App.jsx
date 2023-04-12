@@ -5,6 +5,7 @@ import { Container } from './Container/Container.styled';
 import Cast from './Cast/Cast';
 import Review from './Review/Review';
 import Movies from 'pages/Movies';
+// import MoviesSearchList from './MoviesSearchList/MoviesSearchList';
 
 const Home = React.lazy(() => import('pages/Home'));
 const DetailedMovie = React.lazy(() => import('./DetailedMovie/DetailedMovie'));
@@ -22,7 +23,9 @@ export const App = () => {
               </Suspense>
             }
           />
-          <Route path="movies" element={<Movies />} />
+          <Route path="movies" element={<Movies />}>
+            {/* <Route path="?" element={<MoviesSearchList />}></Route> */}
+          </Route>
           <Route
             path="movies/:id"
             element={
