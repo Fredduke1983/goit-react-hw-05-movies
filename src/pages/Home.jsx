@@ -14,11 +14,6 @@ export default function Home() {
   }, [responsePopular]);
 
   return (
-    <div>
-      Home Page Home
-      <ul>
-        {responsePopular && <ListItem responsePopular={responsePopular} />}
-      </ul>
-    </div>
+    <ul>{responsePopular && <ListItem responsePopular={responsePopular} />}</ul>
   );
 }

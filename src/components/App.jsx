@@ -2,10 +2,11 @@ import Home from 'pages/Home';
 import { Route, Routes } from 'react-router-dom';
 import DetailedMovie from './DetailedMovie/DetailedMovie';
 import Layout from './Header/Layout';
+import { Container } from './Container/Container.styled';
 
 export const App = () => {
   return (
-    <>
+    <Container>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -13,7 +14,7 @@ export const App = () => {
           <Route path="movies/:id" element={<DetailedMovie />}></Route>
         </Route>
       </Routes>
-    </>
+    </Container>
   );
 };
 
