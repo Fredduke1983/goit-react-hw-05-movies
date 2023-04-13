@@ -31,7 +31,7 @@ export default function MoviesForm() {
 
   useEffect(() => {
     query !== '' && getMovies(query);
-    setInputValue(query);
+    query !== null && setInputValue(query);
   }, [query]);
 
   function onChange(e) {

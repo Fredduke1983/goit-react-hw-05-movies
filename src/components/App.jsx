@@ -2,10 +2,10 @@ import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Header/Layout';
 import { Container } from './Container/Container.styled';
-import Cast from './Cast/Cast';
-import Review from './Review/Review';
 import Movies from 'pages/Movies';
 
+const Cast = React.lazy(() => import('./Cast/Cast'));
+const Review = React.lazy(() => import('./Review/Review'));
 const Home = React.lazy(() => import('pages/Home'));
 const DetailedMovie = React.lazy(() => import('./DetailedMovie/DetailedMovie'));
 
@@ -31,17 +31,25 @@ export const App = () => {
               </Suspense>
             }
           >
-            <Route path="cast" element={<Cast />}></Route>
-            <Route path="review" element={<Review />}></Route>
+            <Route
+              path="cast"
+              element={
+                <Suspense fallback={<div>Завантаження...</div>}>
+                  <Cast />
+                </Suspense>
+              }
+            ></Route>
+            <Route
+              path="review"
+              element={
+                <Suspense fallback={<div>Завантаження...</div>}>
+                  <Review />
+                </Suspense>
+              }
+            ></Route>
           </Route>
         </Route>
       </Routes>
     </Container>
   );
 };
-
-//REV https://api.themoviedb.org/3/movie/550/reviews?api_key=07952b117bf25f1a5db75594ad56755b&language=en-US&page=1
-//? --- https://api.themoviedb.org/3/movie/550?api_key=07952b117bf25f1a5db75594ad56755b
-//! https://api.themoviedb.org/3/trending/movie/day?api_key=07952b117bf25f1a5db75594ad56755b
-//* POPULAR -> https://api.themoviedb.org/3/trending/movie/week?api_key=07952b117bf25f1a5db75594ad56755b&language=en-US&page=1&include_adult=false
-//* SEARCH  -> https://api.themoviedb.org/3/search/movie?api_key=07952b117bf25f1a5db75594ad56755b&language=en-US&page=1&include_adult=false&query=avatar
