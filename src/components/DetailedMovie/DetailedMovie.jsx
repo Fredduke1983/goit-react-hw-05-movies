@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import getDetailedMovie from 'utils/GetDetailed';
 import { DetailStyle, ToHomeStyle } from './DetailedMovie.styled';
 import AddInfo from './AddInfo/AddInfo';
@@ -8,6 +8,8 @@ import { BsBoxArrowLeft } from 'react-icons/bs';
 export default function DetailedMovie() {
   const [movieDetail, setMovieDetail] = useState([]);
   const id = useParams();
+  const location = useLocation();
+  const backLocation = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
     if (!id) return;
@@ -21,10 +23,10 @@ export default function DetailedMovie() {
 
   return (
     <>
-      <Link to="/">
+      <Link to={backLocation.current}>
         <ToHomeStyle>
           <BsBoxArrowLeft />
-          <p>Go Home</p>
+          <p>Go back</p>
         </ToHomeStyle>
       </Link>
       <DetailStyle>
