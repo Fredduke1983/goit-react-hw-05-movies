@@ -7,6 +7,7 @@ import defaultImage from '../../img/no-symbol.png';
 export default function MoviesForm() {
   const [searchParams, setSearchParams] = useSearchParams({});
   const [searchList, setSearchList] = useState([]);
+  const [inputValue, setInputValue] = useState('');
   const query = searchParams.get('query');
 
   const location = useLocation();
@@ -30,12 +31,20 @@ export default function MoviesForm() {
 
   useEffect(() => {
     query !== '' && getMovies(query);
+    setInputValue(query);
   }, [query]);
 
+  function onChange(e) {
+    setInputValue(e.target.value);
+  }
   return (
     <>
       <MoviesFormStyle onSubmit={onSubmit}>
-        <input placeholder="search movie" />
+        <input
+          placeholder="search movie"
+          value={inputValue}
+          onChange={onChange}
+        />
         <button type="submit">Search</button>
       </MoviesFormStyle>
 
