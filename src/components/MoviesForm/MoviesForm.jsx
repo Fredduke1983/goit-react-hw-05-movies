@@ -1,4 +1,4 @@
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { MoviesFormStyle, MoviesList } from './MoviesForm.styled';
 import getSearch from 'utils/GetSearch';
 import { useState } from 'react';
@@ -20,9 +20,6 @@ export default function MoviesForm() {
         });
   }
 
-  const location = useLocation();
-  console.log(location.search);
-
   function onChange(event) {
     setSearchParams({ query: event.target.value });
     if (!event.target.value) setSearchParams({});
@@ -39,10 +36,7 @@ export default function MoviesForm() {
           const { id, title, poster_path } = movie;
           return (
             <li key={id}>
-              <Link
-                to={`/movies/${movie.id}`}
-                state={{ from: location.search }}
-              >
+              <Link to={`/movies/${movie.id}`}>
                 {poster_path && (
                   <img
                     src={`https://image.tmdb.org/t/p/original/${poster_path}`}

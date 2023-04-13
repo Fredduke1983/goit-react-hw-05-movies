@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import getDetailedMovie from 'utils/GetDetailed';
 import { DetailStyle, ToHomeStyle } from './DetailedMovie.styled';
 import AddInfo from './AddInfo/AddInfo';
@@ -16,14 +16,12 @@ export default function DetailedMovie() {
       setMovieDetail(movie);
     });
   }, [id]);
-  const location = useLocation();
-  // console.log('LOCATION', location.state.from);
-  const lastLoc = `/movies${location.state.from}`;
+
   const { poster_path, title, vote_average, overview, genres } = movieDetail;
 
   return (
     <>
-      <Link to={lastLoc}>
+      <Link to="/">
         <ToHomeStyle>
           <BsBoxArrowLeft />
           <p>Go Home</p>
