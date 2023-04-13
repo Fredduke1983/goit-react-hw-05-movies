@@ -3,7 +3,7 @@ import { HomeListItem, MainTitle } from './HomeListItem.styled';
 
 export default function ListItem({ responsePopular }) {
   const location = useLocation();
-  console.log(responsePopular);
+
   return (
     <>
       <MainTitle>Trending today</MainTitle>
