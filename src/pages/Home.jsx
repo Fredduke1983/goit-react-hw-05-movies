@@ -2,6 +2,7 @@ import getPopularMovies from 'utils/GetPopular';
 
 import { useEffect, useState } from 'react';
 import ListItem from 'components/ListItemMovies/ListItem';
+import { ListStyle } from './Home.styled';
 
 export default function Home() {
   const [responsePopular, setResponsePopular] = useState([]);
@@ -14,6 +15,8 @@ export default function Home() {
   }, [responsePopular]);
 
   return (
-    <ul>{responsePopular && <ListItem responsePopular={responsePopular} />}</ul>
+    <ListStyle>
+      {responsePopular && <ListItem responsePopular={responsePopular} />}
+    </ListStyle>
   );
 }
